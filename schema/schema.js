@@ -23,6 +23,12 @@ const MovieType = new GraphQLObjectType({
         id: { type: GraphQLString },
         name: { type: GraphQLString },
         genre: { type: GraphQLString },
+        director: {
+            type: DirectorType,
+            resolve(parent, args) {
+                return directors.find(director => director.id == parent.id);
+            }
+        }
     }),
 });
 const DirectorType = new GraphQLObjectType({
@@ -44,6 +50,15 @@ const Query = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 return movies.find(movie => movie.id == args.id);
+            }
+        },
+        director: {
+            type: DirectorType,
+            args: {
+                id: { type: GraphQLID },
+            },
+            resolve(parent, args) {
+                return directors.find(director => director.id == args.id);
             }
         },
     },
