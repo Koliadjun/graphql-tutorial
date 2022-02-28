@@ -116,7 +116,7 @@ const Mutation = new GraphQLObjectType({
             },
             resolve(parent, { id, name, genre, directorId, rate, watched }) {
                 return Movies.findByIdAndUpdate(
-                    args.id,
+                    id,
                     { $set: { name, genre, directorId, rate, watched } },
                     { new: true }
                 )
