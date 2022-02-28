@@ -44,10 +44,10 @@ const Mutation = new GraphQLObjectType({
         addDirector: {
             type: DirectorType,
             args: {
-                name: { type: GraphQLString },
-                age: { type: GraphQLInt },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) },
             },
-            resolve({ name, age }, args) {
+            resolve(parent, { name, age }) {
                 const director = new Directors({
                     name,
                     age,
@@ -70,7 +70,7 @@ const Mutation = new GraphQLObjectType({
                     genre,
                     directorId,
                     rate,
-                    watchedd,
+                    watched,
                 });
                 return movie.save();
             },
