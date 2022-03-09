@@ -4,7 +4,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, 
 
 const Movies = require('../models/movie')
 const Directors = require('../models/director')
-
+const db = require('../server/db/pgdb')
 
 const MovieType = new GraphQLObjectType({
     name: 'Movie',
